@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://d16l1w8ee26ur"]
+
+[ext_resource type="PackedScene" uid="uid://dlv2dp0xkahj6" path="res://tile_map.tscn" id="1_2moy1"]
+[ext_resource type="Script" path="res://main.gd" id="1_dvwld"]
+[ext_resource type="PackedScene" uid="uid://dwdjibre48wnu" path="res://mob.tscn" id="2_jhevr"]
+[ext_resource type="Script" path="res://MobPath.gd" id="3_dpj3h"]
+[ext_resource type="PackedScene" uid="uid://cy5mkgrp01ah0" path="res://hud.tscn" id="5_dcfoj"]
+
+[sub_resource type="Curve2D" id="Curve2D_g3m8r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 115.803, 114.206, 0, 0, 0, 0, 292.137, 113.215, 0, 0, 0, 0, 291.147, 92.3979, 0, 0, 0, 0, 404.08, 93.3892, 0, 0, 0, 0, 399.126, 44.8168, 0, 0, 0, 0, 419.93, 36.8866, 0, 0, 0, 0, 544.75, 34.904, 0, 0, 0, 0, 546.732, 331.295, 0, 0, 0, 0, 526.919, 337.243, 0, 0, 0, 0, 525.928, 355.086, 0, 0, 0, 0, 113.822, 350.129, 0, 0, 0, 0, 108.869, 363.016, 0, 0, 0, 0, 95, 363.016, 0, 0, 0, 0, 95, 532.524, 0, 0, 0, 0, 110.85, 529.55, 0, 0, 0, 0, 109.86, 547.393, 0, 0, 0, 0, 125.71, 545.41, 0, 0, 0, 0, 127.691, 559.288, 0, 0, 0, 0, 141.56, 559.288, 0, 0, 0, 0, 144.532, 575.148, 0, 0, 0, 0, 399.126, 575.148, 0, 0, 0, 0, 400.117, 553.34, 0, 0, 0, 0, 419.93, 555.323, 0, 0, 0, 0, 419.93, 535.497, 0, 0, 0, 0, 436.771, 533.515, 0, 0, 0, 0, 441.724, 508.733, 0, 0, 0, 0, 461.537, 509.724, 0, 0, 0, 0, 463.518, 494.855, 0, 0, 0, 0, 532.863, 498.82, 0, 0, 0, 0, 540.788, 527.567, 0, 0, 0, 0, 560.601, 525.585, 0, 0, 0, 0, 558.619, 549.375, 0, 0, 0, 0, 581.404, 545.41, 0, 0, 0, 0, 578.432, 570.192, 0, 0, 0, 0, 590.32, 571.183, 0, 0, 0, 0, 596.264, 585.061, 0, 0, 0, 0, 728.019, 592)
+}
+point_count = 37
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_riaiw"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_dvwld")
+
+[node name="TileMap" parent="." instance=ExtResource("1_2moy1")]
+
+[node name="MobTimer" type="Timer" parent="."]
+
+[node name="MobPath" type="Path2D" parent="."]
+position = Vector2(-6.89764, -5.21127)
+scale = Vector2(1.00945, 1.0088)
+curve = SubResource("Curve2D_g3m8r")
+script = ExtResource("3_dpj3h")
+mob_scene = ExtResource("2_jhevr")
+
+[node name="MobSpawnLocation" type="Area2D" parent="."]
+position = Vector2(71, 113)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobSpawnLocation"]
+shape = SubResource("CircleShape2D_riaiw")
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("5_dcfoj")]
+
+[connection signal="timeout" from="MobTimer" to="MobPath" method="_on_mob_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

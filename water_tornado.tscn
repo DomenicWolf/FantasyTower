@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bniiy6tiuk0f3"]
+
+[ext_resource type="Script" path="res://water_tornado.gd" id="1_000i4"]
+[ext_resource type="Texture2D" uid="uid://dkcq0y3gnkufl" path="res://Art/WaterTornado-export.png" id="1_hycb2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nx41c"]
+radius = 42.107
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgd6c"]
+atlas = ExtResource("1_hycb2")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv1jn"]
+atlas = ExtResource("1_hycb2")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w7qg"]
+atlas = ExtResource("1_hycb2")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fmge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgd6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pv1jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w7qg")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[node name="WaterTornado" type="Area2D"]
+position = Vector2(235, 161)
+scale = Vector2(4, 4)
+script = ExtResource("1_000i4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_nx41c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.00003, 1.00002)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_6fmge")
+animation = &"attack"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

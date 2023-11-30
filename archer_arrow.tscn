@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8ut6dka1snyu"]
+
+[ext_resource type="Script" path="res://archer_arrow.gd" id="1_5jju5"]
+[ext_resource type="Texture2D" uid="uid://kct0bim3ljym" path="res://Art/ArrowLearn-export.png" id="1_k8g6s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buu2q"]
+size = Vector2(37.5, 10.8333)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eencj"]
+atlas = ExtResource("1_k8g6s")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_523bk"]
+atlas = ExtResource("1_k8g6s")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxpa2"]
+atlas = ExtResource("1_k8g6s")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4vwm"]
+atlas = ExtResource("1_k8g6s")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3ypt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eencj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_523bk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxpa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4vwm")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[node name="ArcherArrow" type="Area2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_5jju5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50.4167, 37.0833)
+shape = SubResource("RectangleShape2D_buu2q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, 38.5)
+sprite_frames = SubResource("SpriteFrames_e3ypt")
+animation = &"attack"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

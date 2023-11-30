@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccp1nvvnkk1yt"]
+
+[ext_resource type="Script" path="res://BardRing.gd" id="1_0qlv1"]
+[ext_resource type="Texture2D" uid="uid://b4fiy0xy2t4h4" path="res://Art/BardRing-export.png" id="2_7b2sb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7epk"]
+radius = 204.039
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o41qj"]
+atlas = ExtResource("2_7b2sb")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pxdy"]
+atlas = ExtResource("2_7b2sb")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrd4t"]
+atlas = ExtResource("2_7b2sb")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noiau"]
+atlas = ExtResource("2_7b2sb")
+region = Rect2(960, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6iw5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o41qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pxdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrd4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noiau")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[node name="BardRing" type="Area2D"]
+position = Vector2(161, 79)
+script = ExtResource("1_0qlv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-17, 5)
+shape = SubResource("CircleShape2D_a7epk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m6iw5")
+animation = &"attack"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

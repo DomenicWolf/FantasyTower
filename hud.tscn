@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy5mkgrp01ah0"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_trua8"]
+[ext_resource type="Texture2D" uid="uid://d0lnublt7udxv" path="res://Art/DurfGame1.png" id="2_k1kle"]
+[ext_resource type="Texture2D" uid="uid://cqjqjhbnoskkm" path="res://Art/HeartLearn.png" id="3_l8wcr"]
+[ext_resource type="Texture2D" uid="uid://d3704ahxbnk8c" path="res://Art/ArcherLearnStand.png" id="4_hmn1a"]
+[ext_resource type="Texture2D" uid="uid://dvk6a3poyinwq" path="res://Art/WaterWizardStatic.png" id="5_2ybth"]
+[ext_resource type="Texture2D" uid="uid://cr2p0yle4rs6r" path="res://Art/BardStatic.png" id="6_h1luh"]
+
+[sub_resource type="Theme" id="Theme_rvqo4"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_trua8")
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -43.0
+offset_right = 87.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+text = "Start Game"
+
+[node name="Tower1" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 653.0
+offset_right = 314.0
+offset_bottom = 986.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("2_k1kle")
+
+[node name="Round" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5.5
+offset_right = 4.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "0"
+
+[node name="SmeckalsValue" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -51.0
+offset_top = 2.0
+offset_bottom = 25.0
+grow_horizontal = 0
+text = "370"
+
+[node name="LivesValue" type="Label" parent="."]
+offset_left = 20.0
+offset_top = -1.0
+offset_right = 30.0
+offset_bottom = 22.0
+text = "100"
+
+[node name="SmeckalsLabel" type="Label" parent="."]
+offset_left = 587.0
+offset_top = 1.0
+offset_right = 664.0
+offset_bottom = 24.0
+text = "Smeckals:"
+
+[node name="GameOver" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -11.5
+offset_right = 47.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rvqo4")
+theme_override_font_sizes/font_size = 50
+text = "Game Over!
+"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(63, 12)
+scale = Vector2(0.146875, 0.154688)
+texture = ExtResource("3_l8wcr")
+
+[node name="ArcherButton" type="Button" parent="."]
+offset_left = 269.0
+offset_top = 653.0
+offset_right = 560.0
+offset_bottom = 959.0
+scale = Vector2(0.22, 0.22)
+icon = ExtResource("4_hmn1a")
+
+[node name="WaterWizardButton" type="Button" parent="."]
+offset_left = 195.0
+offset_top = 651.0
+offset_right = 523.0
+offset_bottom = 979.0
+scale = Vector2(0.21, 0.21)
+icon = ExtResource("5_2ybth")
+
+[node name="BardTowerButton" type="Button" parent="."]
+offset_left = 410.0
+offset_top = 652.0
+offset_right = 738.0
+offset_bottom = 980.0
+scale = Vector2(0.21, 0.21)
+icon = ExtResource("6_h1luh")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="button_down" from="Tower1" to="." method="_on_tower_1_button_down"]
+[connection signal="mouse_entered" from="Tower1" to="." method="_on_tower_1_mouse_entered"]
+[connection signal="pressed" from="Tower1" to="." method="_on_tower_1_pressed"]
+[connection signal="button_down" from="ArcherButton" to="." method="_on_archer_button_button_down"]
+[connection signal="button_up" from="ArcherButton" to="." method="_on_archer_button_button_up"]
+[connection signal="mouse_entered" from="ArcherButton" to="." method="_on_archer_button_mouse_entered"]
+[connection signal="button_down" from="WaterWizardButton" to="." method="_on_water_wizard_button_button_down"]
+[connection signal="mouse_entered" from="WaterWizardButton" to="." method="_on_water_wizard_button_mouse_entered"]
+[connection signal="button_down" from="BardTowerButton" to="." method="_on_bard_tower_button_button_down"]
+[connection signal="mouse_entered" from="BardTowerButton" to="." method="_on_bard_tower_button_mouse_entered"]

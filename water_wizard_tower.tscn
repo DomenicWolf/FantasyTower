@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7w456qw1ex85"]
+
+[ext_resource type="Script" path="res://WaterWizardTower.gd" id="1_xr3vr"]
+[ext_resource type="Texture2D" uid="uid://cgv57fv4t7xcx" path="res://Art/WaterWizard-export.png" id="2_70iky"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0luo"]
+radius = 555.203
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7c4w"]
+atlas = ExtResource("2_70iky")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptib5"]
+atlas = ExtResource("2_70iky")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg5jp"]
+atlas = ExtResource("2_70iky")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hb83e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7c4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptib5")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg5jp")
+}],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}]
+
+[node name="WaterWizardTower" type="Area2D"]
+position = Vector2(42, 24)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_xr3vr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(115, 100)
+shape = SubResource("CircleShape2D_u0luo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(120, 55)
+sprite_frames = SubResource("SpriteFrames_hb83e")
+animation = &"attack"
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.291
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

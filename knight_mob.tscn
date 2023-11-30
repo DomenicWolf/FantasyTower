@@ -1,0 +1,131 @@
+[gd_scene load_steps=18 format=3 uid="uid://q01xk8tc46wq"]
+
+[ext_resource type="Texture2D" uid="uid://dp5gn11fxdeh2" path="res://Art/KnightLearn.png" id="1_b2lnw"]
+[ext_resource type="Script" path="res://knight_mob.gd" id="1_iv0av"]
+[ext_resource type="Texture2D" uid="uid://dokvbgxofos5b" path="res://Art/KnightLearnAnimated-export.png" id="2_e5r5y"]
+[ext_resource type="Texture2D" uid="uid://c2sm07k3uml20" path="res://Art/KnightDeathAnimationLearn-export.png" id="2_pi16x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_74756"]
+radius = 69.0
+height = 146.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deqoq"]
+atlas = ExtResource("2_pi16x")
+region = Rect2(0, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jsdv"]
+atlas = ExtResource("2_pi16x")
+region = Rect2(240, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr6wp"]
+atlas = ExtResource("2_pi16x")
+region = Rect2(480, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obm48"]
+atlas = ExtResource("2_pi16x")
+region = Rect2(720, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b1e5"]
+atlas = ExtResource("2_pi16x")
+region = Rect2(960, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtmrb"]
+atlas = ExtResource("2_pi16x")
+region = Rect2(1200, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsbmb"]
+atlas = ExtResource("2_pi16x")
+region = Rect2(1440, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4otsn"]
+atlas = ExtResource("2_e5r5y")
+region = Rect2(0, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iwo0"]
+atlas = ExtResource("2_e5r5y")
+region = Rect2(240, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78pbq"]
+atlas = ExtResource("2_e5r5y")
+region = Rect2(480, 0, 240, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2aaq"]
+atlas = ExtResource("2_e5r5y")
+region = Rect2(720, 0, 240, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t2o8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deqoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jsdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yr6wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obm48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b1e5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtmrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsbmb")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b2lnw")
+}],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4otsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iwo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78pbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2aaq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="KnightMob" type="Area2D"]
+position = Vector2(184, 126)
+script = ExtResource("1_iv0av")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_74756")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.00003, -15)
+scale = Vector2(0.2, 0.157)
+sprite_frames = SubResource("SpriteFrames_t2o8w")
+animation = &"static"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(5, -5)
+scale = Vector2(10.7, 7.7)
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

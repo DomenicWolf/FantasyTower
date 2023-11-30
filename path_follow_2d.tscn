@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn0yb23x2cmfw"]
+
+[ext_resource type="Script" path="res://PathFollow2D.gd" id="1_73cpo"]
+[ext_resource type="PackedScene" uid="uid://dwdjibre48wnu" path="res://mob.tscn" id="2_3xw5g"]
+
+[node name="PathFollow2D" type="PathFollow2D"]
+script = ExtResource("1_73cpo")
+mob_scene = ExtResource("2_3xw5g")

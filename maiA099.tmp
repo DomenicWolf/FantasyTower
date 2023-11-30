@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d16l1w8ee26ur"]
+
+[ext_resource type="PackedScene" uid="uid://dlv2dp0xkahj6" path="res://tile_map.tscn" id="1_2moy1"]
+[ext_resource type="Script" path="res://main.gd" id="1_dvwld"]
+[ext_resource type="PackedScene" uid="uid://dwdjibre48wnu" path="res://mob.tscn" id="2_jhevr"]
+
+[sub_resource type="Curve2D" id="Curve2D_g3m8r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -14, 194, 0, 0, 0, 0, 178, 198, 0, 0, 0, 0, 187, 119, 0, 0, 0, 0, 221, 93, 0, 0, 0, 0, 257, 88, 0, 0, 0, 0, 276, 104, 0, 0, 0, 0, 282, 143, 0, 0, 0, 0, 295, 198, 0, 0, 0, 0, 361, 201, 0, 0, 0, 0, 375, 238, 0, 0, 0, 0, 370, 268, 0, 0, 0, 0, -38, 263, 0, 0, 0, 0, -14, 194)
+}
+point_count = 13
+
+[node name="Main" type="Node"]
+script = ExtResource("1_dvwld")
+mob_scene = ExtResource("2_jhevr")
+
+[node name="TileMap" parent="." instance=ExtResource("1_2moy1")]
+
+[node name="MobTimer" type="Timer" parent="."]
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_g3m8r")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-14, 194)
+rotation = 0.0208303
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

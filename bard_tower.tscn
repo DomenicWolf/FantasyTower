@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl7ffptyk1g4s"]
+
+[ext_resource type="Script" path="res://BardTower.gd" id="1_o0wwo"]
+[ext_resource type="Texture2D" uid="uid://ca0iebq35ch5q" path="res://Art/BardAttackAni-export.png" id="2_tndho"]
+[ext_resource type="Texture2D" uid="uid://cr2p0yle4rs6r" path="res://Art/BardStatic.png" id="3_k4wdo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vcxq"]
+radius = 108.019
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2qo0"]
+atlas = ExtResource("2_tndho")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsq8b"]
+atlas = ExtResource("2_tndho")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rkdm"]
+atlas = ExtResource("3_k4wdo")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g22hx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2qo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsq8b")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rkdm")
+}],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}]
+
+[node name="BardTower" type="Area2D"]
+position = Vector2(155, 98)
+script = ExtResource("1_o0wwo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_1vcxq")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.147
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -9)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_g22hx")
+animation = &"attack"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://byq71jgacdbw6"]
+
+[ext_resource type="Script" path="res://ArcherTower.gd" id="1_ydr6v"]
+[ext_resource type="Texture2D" uid="uid://doeeg8eqvjvlb" path="res://Art/ArcherAttack-export.png" id="2_tqdub"]
+[ext_resource type="Texture2D" uid="uid://d3704ahxbnk8c" path="res://Art/ArcherLearnStand.png" id="3_364x4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjs7l"]
+radius = 840.238
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64ay2"]
+atlas = ExtResource("2_tqdub")
+region = Rect2(0, 0, 320, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc7o3"]
+atlas = ExtResource("2_tqdub")
+region = Rect2(320, 0, 320, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nvik"]
+atlas = ExtResource("2_tqdub")
+region = Rect2(640, 0, 320, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddrxx"]
+atlas = ExtResource("2_tqdub")
+region = Rect2(960, 0, 320, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g67na"]
+atlas = ExtResource("2_tqdub")
+region = Rect2(1280, 0, 320, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvy5h"]
+atlas = ExtResource("2_tqdub")
+region = Rect2(1600, 0, 320, 280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3k3w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64ay2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc7o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nvik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddrxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g67na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvy5h")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_364x4")
+}],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}]
+
+[node name="ArcherTower" type="Area2D"]
+position = Vector2(156, 132)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_ydr6v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.00012, 10.0001)
+shape = SubResource("CircleShape2D_pjs7l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-19.9999, -24.9999)
+sprite_frames = SubResource("SpriteFrames_w3k3w")
+animation = &"attack"
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.139
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
