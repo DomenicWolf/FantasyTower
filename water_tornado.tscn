@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkcq0y3gnkufl" path="res://Art/WaterTornado-export.png" id="1_hycb2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nx41c"]
-radius = 42.107
+radius = 21.5015
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xgd6c"]
 atlas = ExtResource("1_hycb2")
@@ -45,7 +45,7 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_nx41c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.00003, 1.00002)
+position = Vector2(5.5, 3.5)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_6fmge")
 animation = &"attack"

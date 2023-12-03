@@ -31,3 +31,6 @@ func _on_area_entered(area):
 	if(area.is_in_group("mob_group") and "Skeleton" not in area.name):
 		area.emit_signal("hit",damage)
 		#queue_free()
+
+
+

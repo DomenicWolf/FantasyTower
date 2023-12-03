@@ -9,6 +9,7 @@ var durf_tower = preload("res://durf.tscn")
 var archer_tower = preload("res://archer_tower.tscn")
 var water_wizard_tower = preload("res://water_wizard_tower.tscn")
 var bard_tower = preload("res://bard_tower.tscn")
+var merchant_tower = preload("res://merchant_tower.tscn")
 var IsPlaced : bool = false
 var NewTower : Node
 var moving : bool = false
@@ -17,8 +18,22 @@ var left : bool = false
 var gold_to_remove : int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print('TEST HELLO')
 	$GameOver.hide()
-
+	$SmeckalsLabel.hide()
+	$SmeckalsValue.hide()
+	$LivesValue.hide()
+	$LivesHeart.hide()
+	$Background.hide()
+	$ArcherButton.hide()
+	$WaterWizardButton.hide()
+	$MerchantTowerButton.hide()
+	$BardTowerButton.hide()
+	$Tower1.hide()
+	$Round.hide()
+	$Background.show()
+	$Background.play("default")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -27,7 +42,24 @@ func _process(delta):
 
 func _on_start_button_pressed():
 	$StartButton.hide()
+	$Background.stop()
+	$Background.hide()
+	$Background.visible = false
+	print($Background.visible)
+	$Background.scale = Vector2(0,0)
+	$SmeckalsLabel.show()
+	$SmeckalsValue.show()
+	$LivesValue.show()
+	$LivesHeart.show()
+	$Background.show()
+	$ArcherButton.show()
+	$WaterWizardButton.show()
+	$MerchantTowerButton.show()
+	$BardTowerButton.show()
+	$Tower1.show()
+	$Round.show()
 	start_game.emit()
+
 
 
 func _on_tower_1_pressed():
@@ -136,3 +168,19 @@ func _on_bard_tower_button_mouse_entered():
 	if int($SmeckalsValue.text) >= 200:
 		clicked_tower = bard_tower
 		tower = $BardTowerButton
+
+
+func _on_merchant_tower_button_button_down() -> void:
+	if int($SmeckalsValue.text) >= 200:
+		clicked_tower = merchant_tower
+		gold_to_remove = 200
+		#$SmeckalsValue.text = str(int($SmeckalsValue.text) - 200)
+		tower = $MerchantTowerButton
+	else:
+		clicked_tower = null
+
+
+func _on_merchant_tower_button_mouse_entered() -> void:
+	if int($SmeckalsValue.text) >= 200:
+		clicked_tower = merchant_tower
+		tower = $MerchantTowerButton

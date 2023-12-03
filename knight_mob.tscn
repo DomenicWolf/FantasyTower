@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c2sm07k3uml20" path="res://Art/KnightDeathAnimationLearn-export.png" id="2_pi16x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_74756"]
-radius = 69.0
-height = 146.0
+radius = 20.0
+height = 60.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_deqoq"]
 atlas = ExtResource("2_pi16x")
@@ -120,10 +120,6 @@ position = Vector2(1.00003, -15)
 scale = Vector2(0.2, 0.157)
 sprite_frames = SubResource("SpriteFrames_t2o8w")
 animation = &"static"
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(5, -5)
-scale = Vector2(10.7, 7.7)
 
 [node name="DeathTimer" type="Timer" parent="."]
 

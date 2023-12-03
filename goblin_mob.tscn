@@ -114,8 +114,8 @@ position = Vector2(-1, -1)
 shape = SubResource("CapsuleShape2D_x1h14")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.999996, -5.36442e-07)
-scale = Vector2(3.05, 2.475)
+position = Vector2(0.500006, -0.999999)
+scale = Vector2(1.05, 1.4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -2)

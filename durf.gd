@@ -51,13 +51,13 @@ func set_is_placed():
 
 
 func _on_area_entered(area):
-	if ("Skeleton" not in area.name and "Mob" in area.name):
+	if ("Skeleton" not in area.name and "Mob" in area.name and "Location" not in area.name):
 		attacking.emit()
 		mobs_in_range.append(area)
 
 
 func _on_area_exited(area):
-	if ("Skeleton" not in area.name and "Mob" in area.name):
+	if ("Skeleton" not in area.name and "Mob" in area.name and "Location" not in area.name):
 		$AnimatedSprite2D.stop()
 		if(mobs_in_range.find(area) != -1):
 			mobs_in_range.remove_at(mobs_in_range.find(area))

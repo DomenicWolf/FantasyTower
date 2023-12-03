@@ -123,8 +123,8 @@ sprite_frames = SubResource("SpriteFrames_rpm5g")
 animation = &"death"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-1, -7)
-scale = Vector2(6.7375, 5.25)
+position = Vector2(-5.50001, -4)
+scale = Vector2(1.65, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)

@@ -1,13 +1,59 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy5mkgrp01ah0"]
+[gd_scene load_steps=17 format=3 uid="uid://cy5mkgrp01ah0"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_trua8"]
+[ext_resource type="Texture2D" uid="uid://ge6yavwha0xm" path="res://Art/StartGameLearn.png" id="2_4ehty"]
 [ext_resource type="Texture2D" uid="uid://d0lnublt7udxv" path="res://Art/DurfGame1.png" id="2_k1kle"]
 [ext_resource type="Texture2D" uid="uid://cqjqjhbnoskkm" path="res://Art/HeartLearn.png" id="3_l8wcr"]
 [ext_resource type="Texture2D" uid="uid://d3704ahxbnk8c" path="res://Art/ArcherLearnStand.png" id="4_hmn1a"]
 [ext_resource type="Texture2D" uid="uid://dvk6a3poyinwq" path="res://Art/WaterWizardStatic.png" id="5_2ybth"]
 [ext_resource type="Texture2D" uid="uid://cr2p0yle4rs6r" path="res://Art/BardStatic.png" id="6_h1luh"]
+[ext_resource type="Texture2D" uid="uid://jyh1a2e7aix1" path="res://Art/MerchantManOne.png" id="7_50gh4"]
+[ext_resource type="Texture2D" uid="uid://clmima1u12ov7" path="res://Art/BackGroundTrySelf-export.png" id="8_1o61a"]
 
 [sub_resource type="Theme" id="Theme_rvqo4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6gal"]
+atlas = ExtResource("8_1o61a")
+region = Rect2(0, 0, 1600, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nagu7"]
+atlas = ExtResource("8_1o61a")
+region = Rect2(1600, 0, 1600, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko6ho"]
+atlas = ExtResource("8_1o61a")
+region = Rect2(3200, 0, 1600, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fu2u"]
+atlas = ExtResource("8_1o61a")
+region = Rect2(4800, 0, 1600, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fh6m"]
+atlas = ExtResource("8_1o61a")
+region = Rect2(6400, 0, 1600, 900)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1jgg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6gal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nagu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko6ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fu2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fh6m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_trua8")
@@ -18,23 +64,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.5
-offset_top = -43.0
-offset_right = 87.5
-offset_bottom = 43.0
+offset_left = -75.0
+offset_top = -35.0
+offset_right = 573.0
+offset_bottom = 293.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.25, 0.25)
 size_flags_vertical = 8
-text = "Start Game"
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_4ehty")
 
 [node name="Tower1" type="Button" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -21.0
-offset_top = 653.0
+offset_top = 651.0
 offset_right = 314.0
-offset_bottom = 986.0
+offset_bottom = 994.0
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
 icon = ExtResource("2_k1kle")
@@ -68,9 +116,9 @@ offset_bottom = 22.0
 text = "100"
 
 [node name="SmeckalsLabel" type="Label" parent="."]
-offset_left = 587.0
+offset_left = 1148.0
 offset_top = 1.0
-offset_right = 664.0
+offset_right = 1225.0
 offset_bottom = 24.0
 text = "Smeckals:"
 
@@ -91,34 +139,48 @@ theme_override_font_sizes/font_size = 50
 text = "Game Over!
 "
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="LivesHeart" type="Sprite2D" parent="."]
 position = Vector2(63, 12)
 scale = Vector2(0.146875, 0.154688)
 texture = ExtResource("3_l8wcr")
 
 [node name="ArcherButton" type="Button" parent="."]
-offset_left = 269.0
-offset_top = 653.0
-offset_right = 560.0
-offset_bottom = 959.0
+offset_left = 478.0
+offset_top = 652.0
+offset_right = 769.0
+offset_bottom = 958.0
 scale = Vector2(0.22, 0.22)
 icon = ExtResource("4_hmn1a")
 
 [node name="WaterWizardButton" type="Button" parent="."]
-offset_left = 195.0
+offset_left = 763.0
 offset_top = 651.0
-offset_right = 523.0
+offset_right = 1091.0
 offset_bottom = 979.0
 scale = Vector2(0.21, 0.21)
 icon = ExtResource("5_2ybth")
 
 [node name="BardTowerButton" type="Button" parent="."]
-offset_left = 410.0
-offset_top = 652.0
-offset_right = 738.0
-offset_bottom = 980.0
+offset_left = 546.0
+offset_top = 651.0
+offset_right = 874.0
+offset_bottom = 979.0
 scale = Vector2(0.21, 0.21)
 icon = ExtResource("6_h1luh")
+
+[node name="MerchantTowerButton" type="Button" parent="."]
+offset_left = 690.0
+offset_top = 651.0
+offset_right = 1018.0
+offset_bottom = 979.0
+scale = Vector2(0.21, 0.21)
+icon = ExtResource("7_50gh4")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(639.25, 359.25)
+scale = Vector2(0.799688, 0.803889)
+sprite_frames = SubResource("SpriteFrames_k1jgg")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="Tower1" to="." method="_on_tower_1_button_down"]
@@ -131,3 +193,5 @@ icon = ExtResource("6_h1luh")
 [connection signal="mouse_entered" from="WaterWizardButton" to="." method="_on_water_wizard_button_mouse_entered"]
 [connection signal="button_down" from="BardTowerButton" to="." method="_on_bard_tower_button_button_down"]
 [connection signal="mouse_entered" from="BardTowerButton" to="." method="_on_bard_tower_button_mouse_entered"]
+[connection signal="button_down" from="MerchantTowerButton" to="." method="_on_merchant_tower_button_button_down"]
+[connection signal="mouse_entered" from="MerchantTowerButton" to="." method="_on_merchant_tower_button_mouse_entered"]
