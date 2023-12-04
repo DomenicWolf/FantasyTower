@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cy5mkgrp01ah0"]
+[gd_scene load_steps=21 format=3 uid="uid://cy5mkgrp01ah0"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_trua8"]
 [ext_resource type="Texture2D" uid="uid://ge6yavwha0xm" path="res://Art/StartGameLearn.png" id="2_4ehty"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://cr2p0yle4rs6r" path="res://Art/BardStatic.png" id="6_h1luh"]
 [ext_resource type="Texture2D" uid="uid://jyh1a2e7aix1" path="res://Art/MerchantManOne.png" id="7_50gh4"]
 [ext_resource type="Texture2D" uid="uid://clmima1u12ov7" path="res://Art/BackGroundTrySelf-export.png" id="8_1o61a"]
+[ext_resource type="Texture2D" uid="uid://o6fi6a3jgnlf" path="res://Art/TitleFantasy.png" id="10_qmm70"]
+[ext_resource type="Texture2D" uid="uid://bjajwx2ewoahu" path="res://Art/SoloButton.png" id="11_hvplc"]
+[ext_resource type="Texture2D" uid="uid://4fuxrrcatglw" path="res://Art/OnlineButton.png" id="12_gd2oe"]
+[ext_resource type="Texture2D" uid="uid://cy5wic0ww2mjx" path="res://Art/SoloRock.png" id="13_vcf4n"]
 
 [sub_resource type="Theme" id="Theme_rvqo4"]
 
@@ -182,6 +186,35 @@ position = Vector2(639.25, 359.25)
 scale = Vector2(0.799688, 0.803889)
 sprite_frames = SubResource("SpriteFrames_k1jgg")
 
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(656, 187)
+scale = Vector2(0.326953, 0.314844)
+texture = ExtResource("10_qmm70")
+
+[node name="Solo" type="Button" parent="."]
+offset_left = 492.0
+offset_top = 435.0
+offset_right = 1140.0
+offset_bottom = 763.0
+scale = Vector2(0.2, 0.2)
+mouse_default_cursor_shape = 2
+icon = ExtResource("11_hvplc")
+
+[node name="Online" type="Button" parent="."]
+offset_left = 672.0
+offset_top = 436.0
+offset_right = 1320.0
+offset_bottom = 764.0
+scale = Vector2(0.2, 0.2)
+mouse_default_cursor_shape = 2
+icon = ExtResource("12_gd2oe")
+
+[node name="SoloRock" type="Sprite2D" parent="."]
+position = Vector2(880, 649)
+rotation = 0.359538
+scale = Vector2(0.326201, 0.343286)
+texture = ExtResource("13_vcf4n")
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="Tower1" to="." method="_on_tower_1_button_down"]
 [connection signal="mouse_entered" from="Tower1" to="." method="_on_tower_1_mouse_entered"]
@@ -195,3 +228,4 @@ sprite_frames = SubResource("SpriteFrames_k1jgg")
 [connection signal="mouse_entered" from="BardTowerButton" to="." method="_on_bard_tower_button_mouse_entered"]
 [connection signal="button_down" from="MerchantTowerButton" to="." method="_on_merchant_tower_button_button_down"]
 [connection signal="mouse_entered" from="MerchantTowerButton" to="." method="_on_merchant_tower_button_mouse_entered"]
+[connection signal="pressed" from="Solo" to="." method="_on_solo_pressed"]

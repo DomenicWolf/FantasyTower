@@ -16,6 +16,7 @@ var moving : bool = false
 var tower : Node
 var left : bool = false
 var gold_to_remove : int = 0
+var map : String = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print('TEST HELLO')
@@ -32,6 +33,8 @@ func _ready():
 	$Tower1.hide()
 	$Round.hide()
 	$Background.show()
+	$StartButton.hide()
+	$SoloRock.hide()
 	$Background.play("default")
 	
 
@@ -41,6 +44,7 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
+	$Title.hide()
 	$StartButton.hide()
 	$Background.stop()
 	$Background.hide()
@@ -58,6 +62,7 @@ func _on_start_button_pressed():
 	$BardTowerButton.show()
 	$Tower1.show()
 	$Round.show()
+	$SoloRock.hide()
 	start_game.emit()
 
 
@@ -184,3 +189,10 @@ func _on_merchant_tower_button_mouse_entered() -> void:
 	if int($SmeckalsValue.text) >= 200:
 		clicked_tower = merchant_tower
 		tower = $MerchantTowerButton
+
+
+func _on_solo_pressed() -> void:
+	$StartButton.show()
+	$Solo.hide()
+	$Online.hide()
+	$SoloRock.show()
