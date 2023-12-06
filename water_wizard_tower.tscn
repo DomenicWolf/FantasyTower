@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7w456qw1ex85"]
+[gd_scene load_steps=9 format=3 uid="uid://b7w456qw1ex85"]
 
 [ext_resource type="Script" path="res://WaterWizardTower.gd" id="1_xr3vr"]
 [ext_resource type="Texture2D" uid="uid://cgv57fv4t7xcx" path="res://Art/WaterWizard-export.png" id="2_70iky"]
@@ -40,14 +40,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ublib"]
+radius = 180.069
+
 [node name="WaterWizardTower" type="Area2D"]
-position = Vector2(42, 24)
+position = Vector2(158, 123)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_xr3vr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(115, 100)
+position = Vector2(125, 60)
 shape = SubResource("CircleShape2D_u0luo")
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionShape2D"]
+position = Vector2(-115, -100)
+scale = Vector2(1, 1)
+color = Color(0.152941, 0.152941, 0.152941, 0.584314)
+polygon = PackedVector2Array(-160, -385, -35, -435, 105, -455, 265, -435, 390, -385, 500, -295, 595, -180, 650, -45, 670, 95, 655, 240, 605, 370, 525, 485, 400, 580, 270, 635, 120, 655, -45, 635, -185, 570, -285, 490, -365, 375, -425, 245, -440, 95, -420, -50, -360, -195, -275, -295)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(120, 55)
@@ -58,8 +68,15 @@ animation = &"attack"
 wait_time = 0.291
 autostart = true
 
+[node name="SelectRadius" type="CollisionShape2D" parent="."]
+position = Vector2(120, 65)
+shape = SubResource("CircleShape2D_ublib")
+
+[node name="Popup" type="Popup" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

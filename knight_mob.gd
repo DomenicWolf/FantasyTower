@@ -58,3 +58,6 @@ func _on_hit(damage):
 func _on_death_timer_timeout():
 	queue_free()
 
+
+
+

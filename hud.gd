@@ -36,6 +36,9 @@ func _ready():
 	$StartButton.hide()
 	$SoloRock.hide()
 	$Background.play("default")
+	$MountainMapButton.hide()
+	$GrassMapButton.hide()
+	$ValleyRock.hide()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,6 +66,7 @@ func _on_start_button_pressed():
 	$Tower1.show()
 	$Round.show()
 	$SoloRock.hide()
+	$ValleyRock.hide()
 	start_game.emit()
 
 
@@ -192,7 +196,22 @@ func _on_merchant_tower_button_mouse_entered() -> void:
 
 
 func _on_solo_pressed() -> void:
-	$StartButton.show()
 	$Solo.hide()
 	$Online.hide()
 	$SoloRock.show()
+	$MountainMapButton.show()
+	$GrassMapButton.show()
+
+
+func _on_online_pressed() -> void:
+	$Solo.hide()
+	$Online.hide()
+	$MountainMapButton.show()
+	$GrassMapButton.show()
+
+
+func _on_grass_map_button_pressed() -> void:
+	$StartButton.show()
+	$MountainMapButton.hide()
+	$GrassMapButton.hide()
+	$ValleyRock.show()

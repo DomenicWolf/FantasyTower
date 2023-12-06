@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cy5mkgrp01ah0"]
+[gd_scene load_steps=24 format=3 uid="uid://cy5mkgrp01ah0"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_trua8"]
 [ext_resource type="Texture2D" uid="uid://ge6yavwha0xm" path="res://Art/StartGameLearn.png" id="2_4ehty"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://bjajwx2ewoahu" path="res://Art/SoloButton.png" id="11_hvplc"]
 [ext_resource type="Texture2D" uid="uid://4fuxrrcatglw" path="res://Art/OnlineButton.png" id="12_gd2oe"]
 [ext_resource type="Texture2D" uid="uid://cy5wic0ww2mjx" path="res://Art/SoloRock.png" id="13_vcf4n"]
+[ext_resource type="Texture2D" uid="uid://e5loghfld5qe" path="res://Art/Mountain.png" id="14_ks6ig"]
+[ext_resource type="Texture2D" uid="uid://vodknpuldu8c" path="res://Art/Valley.png" id="15_uvy2v"]
+[ext_resource type="Texture2D" uid="uid://chgiyeltnfxgm" path="res://Art/ValleyRock.png" id="16_u1by5"]
 
 [sub_resource type="Theme" id="Theme_rvqo4"]
 
@@ -215,6 +218,28 @@ rotation = 0.359538
 scale = Vector2(0.326201, 0.343286)
 texture = ExtResource("13_vcf4n")
 
+[node name="MountainMapButton" type="Button" parent="."]
+offset_left = 673.0
+offset_top = 435.0
+offset_right = 1321.0
+offset_bottom = 763.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("14_ks6ig")
+
+[node name="GrassMapButton" type="Button" parent="."]
+offset_left = 490.0
+offset_top = 435.0
+offset_right = 1138.0
+offset_bottom = 763.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("15_uvy2v")
+
+[node name="ValleyRock" type="Sprite2D" parent="."]
+position = Vector2(856, 694)
+rotation = 0.359538
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("16_u1by5")
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="Tower1" to="." method="_on_tower_1_button_down"]
 [connection signal="mouse_entered" from="Tower1" to="." method="_on_tower_1_mouse_entered"]
@@ -229,3 +254,5 @@ texture = ExtResource("13_vcf4n")
 [connection signal="button_down" from="MerchantTowerButton" to="." method="_on_merchant_tower_button_button_down"]
 [connection signal="mouse_entered" from="MerchantTowerButton" to="." method="_on_merchant_tower_button_mouse_entered"]
 [connection signal="pressed" from="Solo" to="." method="_on_solo_pressed"]
+[connection signal="pressed" from="Online" to="." method="_on_online_pressed"]
+[connection signal="pressed" from="GrassMapButton" to="." method="_on_grass_map_button_pressed"]

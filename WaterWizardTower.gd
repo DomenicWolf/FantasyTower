@@ -9,7 +9,7 @@ var water_tornado = preload("res://water_tornado.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$CollisionShape2D/Polygon2D.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for mob in mobs_in_range:
@@ -69,3 +69,16 @@ func _on_area_exited(area):
 		print(1)
 		if(mobs_in_range.find(area) != -1):
 			mobs_in_range.remove_at(mobs_in_range.find(area))
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	#print(event.as_text())
+	print('test')
+	if (position.distance_to(event.position) <= 50.0):
+		$CollisionShape2D/Polygon2D.show()
+		if(event.is_action("left_click")):
+			print("ytep[]")
+			$Popup.position = self.position
+			$Popup.show()
+	else:
+		$CollisionShape2D/Polygon2D.hide()

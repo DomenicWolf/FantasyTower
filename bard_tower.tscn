@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl7ffptyk1g4s"]
+[gd_scene load_steps=10 format=3 uid="uid://dl7ffptyk1g4s"]
 
 [ext_resource type="Script" path="res://BardTower.gd" id="1_o0wwo"]
 [ext_resource type="Texture2D" uid="uid://ca0iebq35ch5q" path="res://Art/BardAttackAni-export.png" id="2_tndho"]
@@ -41,13 +41,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwg4i"]
+radius = 34.0
+
 [node name="BardTower" type="Area2D"]
-position = Vector2(155, 98)
+position = Vector2(286, 180)
 script = ExtResource("1_o0wwo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_1vcxq")
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionShape2D"]
+color = Color(0.156863, 0.156863, 0.156863, 0.686275)
+polygon = PackedVector2Array(-28, -105, 0, -108, 28, -104, 55, -93, 76, -77, 92, -57, 104, -32, 108, -2, 105, 25, 95, 50, 82, 71, 64, 86, 45, 98, 20, 106, -22, 105, -55, 95, -78, 74, -98, 47, -109, 9, -104, -27, -94, -53, -76, -77, -55, -94)
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.147
@@ -59,8 +66,15 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_g22hx")
 animation = &"attack"
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2, -2)
+shape = SubResource("CircleShape2D_gwg4i")
+
+[node name="Popup" type="Popup" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

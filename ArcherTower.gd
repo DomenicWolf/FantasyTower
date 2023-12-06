@@ -5,10 +5,11 @@ var mobs_in_range : Array = []
 var time : bool = false
 var archer_arrow = preload("res://archer_arrow.tscn")
 @export var is_placed : bool = false
+var mouse_hovered : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$CollisionShape2D/Polygon2D.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for mob in mobs_in_range:
@@ -68,3 +69,27 @@ func _on_area_exited(area):
 		print(1)
 		if(mobs_in_range.find(area) != -1):
 			mobs_in_range.remove_at(mobs_in_range.find(area))
+
+func _on_mouse_entered() -> void:
+	pass
+
+func _on_mouse_exited() -> void:
+	pass
+
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	#print(event.as_text())
+	if (position.distance_to(event.position) <= 50.0):
+		$CollisionShape2D/Polygon2D.show()
+		if(event.is_action("left_click")):
+			print("ytep[]")
+			$PopupMenu.position = self.position
+			$PopupMenu.show()
+	else:
+		$CollisionShape2D/Polygon2D.hide()
+
+
+
+func _on_faster_shooting_upgrade_pressed() -> void:
+	$PopupMenu.hide()

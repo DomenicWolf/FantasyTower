@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d16l1w8ee26ur"]
+[gd_scene load_steps=15 format=3 uid="uid://d16l1w8ee26ur"]
 
 [ext_resource type="PackedScene" uid="uid://dlv2dp0xkahj6" path="res://tile_map.tscn" id="1_2moy1"]
 [ext_resource type="Script" path="res://main.gd" id="1_dvwld"]
@@ -22,6 +22,8 @@ radius = 27.074
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vevx5"]
 radius = 125.0
+
+[sub_resource type="TileSet" id="TileSet_tvv5n"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_dvwld")
@@ -79,6 +81,10 @@ autoplay = true
 
 [node name="GrassBattle" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_la0ot")
+
+[node name="MountainMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_tvv5n")
+format = 2
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="GrassMobPath" method="_on_mob_timer_timeout"]

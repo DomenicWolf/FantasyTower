@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://byq71jgacdbw6"]
+[gd_scene load_steps=14 format=3 uid="uid://byq71jgacdbw6"]
 
 [ext_resource type="Script" path="res://ArcherTower.gd" id="1_ydr6v"]
 [ext_resource type="Script" path="res://ArcherCollision.gd" id="2_saefp"]
 [ext_resource type="Texture2D" uid="uid://doeeg8eqvjvlb" path="res://Art/ArcherAttack-export.png" id="2_tqdub"]
 [ext_resource type="Texture2D" uid="uid://d3704ahxbnk8c" path="res://Art/ArcherLearnStand.png" id="3_364x4"]
-[ext_resource type="Script" path="res://test.gd" id="5_dl06y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pjs7l"]
 radius = 840.238
@@ -68,36 +67,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mdccj"]
-radius = 150.0
-
-[sub_resource type="Theme" id="Theme_ou8pi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6n5p"]
-bg_color = Color(0.0509804, 0.25098, 0.588235, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="FontFile" id="FontFile_vdsmc"]
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="Theme" id="Theme_54pob"]
-default_font = SubResource("FontFile_vdsmc")
-Button/styles/normal = SubResource("StyleBoxFlat_f6n5p")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j8d2"]
-
-[sub_resource type="Theme" id="Theme_30jte"]
-Button/styles/normal = SubResource("StyleBoxFlat_7j8d2")
 
 [node name="ArcherTower" type="Area2D"]
-position = Vector2(444, 218)
+position = Vector2(156, 132)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_ydr6v")
 
@@ -108,7 +80,7 @@ debug_color = Color(0.0784314, 0.0627451, 0.0313726, 0.419608)
 script = ExtResource("2_saefp")
 
 [node name="Polygon2D" type="Polygon2D" parent="CollisionShape2D"]
-color = Color(0.203922, 0.203922, 0.203922, 0.611765)
+color = Color(0.203922, 0.203922, 0.203922, 1)
 polygon = PackedVector2Array(-430, -730, -585, -610, -710, -440, -800, -245, -835, -15.0001, -825, 150, -790, 285, -715, 455, -625, 555, -480, 685, -310, 775, -140, 825, 44.9999, 845, 225, 810, 420, 735, 570, 625, 660, 515, 765, 355, 815, 205, 845, 9.99994, 820, -155, 765, -335, 705, -465, 590, -585, 420, -730, 250, -795, 69.9999, -830, -25.0001, -835, -215, -805)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -121,7 +93,6 @@ wait_time = 0.139
 autostart = true
 
 [node name="SelectRadius" type="CollisionShape2D" parent="."]
-position = Vector2(15, -15)
 shape = SubResource("CircleShape2D_mdccj")
 
 [node name="Polygon2D" type="Polygon2D" parent="SelectRadius"]
@@ -130,77 +101,6 @@ position = Vector2(15, -12.9403)
 scale = Vector2(0.161677, 0.176119)
 color = Color(0.188235, 0.188235, 0.188235, 0.403922)
 polygon = PackedVector2Array(-190, -810, -400, -735, -605, -580, -705, -445, -800, -275, -830, -125, -835, 64.9999, -815, 195, -775, 310, -720, 435, -620, 580, -490, 665, -390, 745, -235, 800, -85.0001, 840, 89.9999, 835, 225, 805, 360, 755, 465, 700, 570, 620, 655, 525, 720, 445, 760, 340, 815, 235, 835, 94.9999, 665, 4.99994, 820, -185, 785, -295, 725, -430, 635, -555, 530, -655, 420, -730, 240, -790, 79.9999, -830, -100, -835)
-
-[node name="Popup" type="Popup" parent="."]
-title = "poop"
-theme = SubResource("Theme_ou8pi")
-
-[node name="FasterShootingUpgrade" type="Button" parent="Popup"]
-offset_right = 8.0
-offset_bottom = 8.0
-mouse_default_cursor_shape = 2
-text = "CLICK ME
-"
-
-[node name="PopupMenu" type="PopupMenu" parent="."]
-visible = true
-theme = SubResource("Theme_54pob")
-script = ExtResource("5_dl06y")
-
-[node name="Button" type="Button" parent="PopupMenu"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Faster Shooting"
-
-[node name="UpgradePopup" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -1715.0
-offset_top = -225.0
-offset_right = -1675.0
-offset_bottom = -185.0
-theme = SubResource("Theme_30jte")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UpgradePopup"]
-layout_mode = 0
-offset_left = -360.0
-offset_top = -55.0
-offset_right = 325.0
-offset_bottom = 50.0
-
-[node name="Button2" type="Button" parent="UpgradePopup/HBoxContainer"]
-layout_mode = 2
-text = "Upgrade one"
-
-[node name="Button3" type="Button" parent="UpgradePopup/HBoxContainer"]
-layout_mode = 2
-text = "Upgrade Two
-"
-
-[node name="Button" type="Button" parent="UpgradePopup/HBoxContainer"]
-layout_mode = 2
-text = "Upgrade Three"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UpgradePopup"]
-layout_mode = 0
-offset_left = -360.0
-offset_top = 55.0
-offset_right = 325.0
-offset_bottom = 155.0
-
-[node name="Button" type="Button" parent="UpgradePopup/HBoxContainer2"]
-layout_mode = 2
-text = "Upgrade One
-"
-
-[node name="Button2" type="Button" parent="UpgradePopup/HBoxContainer2"]
-layout_mode = 2
-text = "Upgrade Two"
-
-[node name="Button3" type="Button" parent="UpgradePopup/HBoxContainer2"]
-layout_mode = 2
-text = "Upgrade Three
-"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
@@ -211,4 +111,3 @@ text = "Upgrade Three
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="draw" from="CollisionShape2D" to="CollisionShape2D" method="_on_draw"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="pressed" from="Popup/FasterShootingUpgrade" to="." method="_on_faster_shooting_upgrade_pressed"]

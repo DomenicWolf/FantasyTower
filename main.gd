@@ -17,6 +17,7 @@ var goblin_timer_amount_max : int = 0
 var imp_timer_amount : int = 0
 var imp_timer_amount_max : int = 0
 var title : bool = true
+var map 
 
 
 func _game_started() -> bool:

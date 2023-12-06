@@ -32,3 +32,9 @@ func _on_animation_finished() -> void:
 
 func _on_animation_looped() -> void:
 	stop()
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+		if(event.is_action("left_click")):
+			print("ytep[]")
+			$Popup.position = self.position
+			$Popup.show()
