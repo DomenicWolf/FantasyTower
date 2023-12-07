@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://byq71jgacdbw6"]
+[gd_scene load_steps=17 format=3 uid="uid://byq71jgacdbw6"]
 
 [ext_resource type="Script" path="res://ArcherTower.gd" id="1_ydr6v"]
 [ext_resource type="Script" path="res://ArcherCollision.gd" id="2_saefp"]
 [ext_resource type="Texture2D" uid="uid://doeeg8eqvjvlb" path="res://Art/ArcherAttack-export.png" id="2_tqdub"]
 [ext_resource type="Texture2D" uid="uid://d3704ahxbnk8c" path="res://Art/ArcherLearnStand.png" id="3_364x4"]
-[ext_resource type="Script" path="res://test.gd" id="5_dl06y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pjs7l"]
 radius = 840.238
@@ -70,31 +69,25 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_mdccj"]
 radius = 150.0
 
-[sub_resource type="Theme" id="Theme_ou8pi"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j8d2"]
+bg_color = Color(0.301961, 0.188235, 0.188235, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6n5p"]
-bg_color = Color(0.0509804, 0.25098, 0.588235, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anhqm"]
+bg_color = Color(0.301961, 0.188235, 0.188235, 1)
+border_width_bottom = 4
+border_color = Color(0.156863, 0.0901961, 0.0901961, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-
-[sub_resource type="FontFile" id="FontFile_vdsmc"]
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="Theme" id="Theme_54pob"]
-default_font = SubResource("FontFile_vdsmc")
-Button/styles/normal = SubResource("StyleBoxFlat_f6n5p")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j8d2"]
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="Theme" id="Theme_30jte"]
 Button/styles/normal = SubResource("StyleBoxFlat_7j8d2")
+Label/styles/normal = SubResource("StyleBoxFlat_anhqm")
 
 [node name="ArcherTower" type="Area2D"]
 position = Vector2(444, 218)
@@ -117,7 +110,7 @@ sprite_frames = SubResource("SpriteFrames_w3k3w")
 animation = &"attack"
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.139
+wait_time = 0.528
 autostart = true
 
 [node name="SelectRadius" type="CollisionShape2D" parent="."]
@@ -131,76 +124,133 @@ scale = Vector2(0.161677, 0.176119)
 color = Color(0.188235, 0.188235, 0.188235, 0.403922)
 polygon = PackedVector2Array(-190, -810, -400, -735, -605, -580, -705, -445, -800, -275, -830, -125, -835, 64.9999, -815, 195, -775, 310, -720, 435, -620, 580, -490, 665, -390, 745, -235, 800, -85.0001, 840, 89.9999, 835, 225, 805, 360, 755, 465, 700, 570, 620, 655, 525, 720, 445, 760, 340, 815, 235, 835, 94.9999, 665, 4.99994, 820, -185, 785, -295, 725, -430, 635, -555, 530, -655, 420, -730, 240, -790, 79.9999, -830, -100, -835)
 
-[node name="Popup" type="Popup" parent="."]
-title = "poop"
-theme = SubResource("Theme_ou8pi")
-
-[node name="FasterShootingUpgrade" type="Button" parent="Popup"]
-offset_right = 8.0
-offset_bottom = 8.0
-mouse_default_cursor_shape = 2
-text = "CLICK ME
-"
-
-[node name="PopupMenu" type="PopupMenu" parent="."]
-visible = true
-theme = SubResource("Theme_54pob")
-script = ExtResource("5_dl06y")
-
-[node name="Button" type="Button" parent="PopupMenu"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Faster Shooting"
-
 [node name="UpgradePopup" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = -1715.0
-offset_top = -225.0
-offset_right = -1675.0
-offset_bottom = -185.0
+offset_left = -1735.0
+offset_top = -120.0
+offset_right = -1695.0
+offset_bottom = -80.0
+scale = Vector2(3, 3)
 theme = SubResource("Theme_30jte")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UpgradePopup"]
 layout_mode = 0
-offset_left = -360.0
-offset_top = -55.0
-offset_right = 325.0
-offset_bottom = 50.0
+offset_left = -400.0
+offset_top = -305.0
+offset_right = 688.0
+offset_bottom = -25.0
+scale = Vector2(0.7, 0.7)
 
-[node name="Button2" type="Button" parent="UpgradePopup/HBoxContainer"]
+[node name="FasterShootingUpgrade" type="Button" parent="UpgradePopup/HBoxContainer"]
 layout_mode = 2
-text = "Upgrade one"
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_364x4")
 
-[node name="Button3" type="Button" parent="UpgradePopup/HBoxContainer"]
+[node name="FireArrowsUpgrade" type="Button" parent="UpgradePopup/HBoxContainer"]
 layout_mode = 2
-text = "Upgrade Two
+mouse_default_cursor_shape = 2
+text = "
 "
+icon = ExtResource("3_364x4")
 
-[node name="Button" type="Button" parent="UpgradePopup/HBoxContainer"]
+[node name="EternalHeatUpgrade" type="Button" parent="UpgradePopup/HBoxContainer"]
 layout_mode = 2
-text = "Upgrade Three"
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_364x4")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UpgradePopup"]
 layout_mode = 0
-offset_left = -360.0
-offset_top = 55.0
-offset_right = 325.0
-offset_bottom = 155.0
+offset_left = -396.667
+offset_top = -36.6667
+offset_right = 417.333
+offset_bottom = 243.333
+scale = Vector2(0.7, 0.7)
 
-[node name="Button" type="Button" parent="UpgradePopup/HBoxContainer2"]
+[node name="LongerRangeUpgrade" type="Button" parent="UpgradePopup/HBoxContainer2"]
 layout_mode = 2
-text = "Upgrade One
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_364x4")
+
+[node name="TripleArrowsUpgrade" type="Button" parent="UpgradePopup/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_364x4")
+
+[node name="CosmicUpgrade" type="Button" parent="UpgradePopup/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "
 "
+icon = ExtResource("3_364x4")
 
-[node name="Button2" type="Button" parent="UpgradePopup/HBoxContainer2"]
+[node name="FasterLabel" type="Label" parent="UpgradePopup"]
 layout_mode = 2
-text = "Upgrade Two"
+offset_left = -370.0
+offset_top = -100.0
+offset_right = -249.0
+offset_bottom = -73.0
+text = "Faster Shooting
+200 S$"
+horizontal_alignment = 1
 
-[node name="Button3" type="Button" parent="UpgradePopup/HBoxContainer2"]
-layout_mode = 2
-text = "Upgrade Three
+[node name="CosmicLabel" type="Label" parent="UpgradePopup"]
+offset_left = -50.0
+offset_top = 166.667
+offset_right = 140.0
+offset_bottom = 219.667
+text = "Archer of Cosmic Infinity
+ 70000 S$"
+horizontal_alignment = 1
+
+[node name="TripleLabel" type="Label" parent="UpgradePopup"]
+offset_left = -193.333
+offset_top = 168.333
+offset_right = -72.3333
+offset_bottom = 195.333
+text = "Triple Arrows
+3000 S$"
+horizontal_alignment = 1
+
+[node name="LongerLabel" type="Label" parent="UpgradePopup"]
+offset_left = -375.0
+offset_top = 166.667
+offset_right = -254.0
+offset_bottom = 193.667
+text = "Longer Range
+300 S$
 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeatLabel2" type="Label" parent="UpgradePopup"]
+offset_left = -45.0
+offset_top = -100.0
+offset_right = 137.0
+offset_bottom = -73.0
+text = "Archer of Eternal Flame
+50000 S$"
+horizontal_alignment = 1
+
+[node name="FireLabel" type="Label" parent="UpgradePopup"]
+offset_left = -195.0
+offset_top = -100.0
+offset_right = -74.0
+offset_bottom = -73.0
+text = "Fire Arrows
+5000 S$
+"
+horizontal_alignment = 1
+
+[node name="ExitButton" type="Button" parent="UpgradePopup"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = -305.0
+offset_right = 175.0
+offset_bottom = -265.0
+mouse_default_cursor_shape = 2
+text = "X"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
@@ -211,4 +261,4 @@ text = "Upgrade Three
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="draw" from="CollisionShape2D" to="CollisionShape2D" method="_on_draw"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="pressed" from="Popup/FasterShootingUpgrade" to="." method="_on_faster_shooting_upgrade_pressed"]
+[connection signal="pressed" from="UpgradePopup/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -18,6 +18,8 @@ var imp_timer_amount : int = 0
 var imp_timer_amount_max : int = 0
 var title : bool = true
 var map 
+var music_mute : bool = false
+var escape_menu : bool = false
 
 
 func _game_started() -> bool:
@@ -25,7 +27,7 @@ func _game_started() -> bool:
 	return game_over
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$PauseMenuContainer/PauseMenu.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,16 +35,27 @@ func _process(delta):
 	if (!get_tree().has_group("mob_group") and !round_in_progress and !game_over):
 		round_in_progress = true
 		$RoundTimer.start()
-	if(title and !$TitleMusic.playing):
+	if(title and !$TitleMusic.playing and !music_mute):
 		$TitleMusic.play()
-	if(!title and $TitleMusic.playing):
+	if(!title and $TitleMusic.playing and !music_mute):
 		$TitleMusic.stop()
 		
-	if(!title and !$GrassBattle.playing):
+	if(!title and !$GrassBattle.playing and !music_mute):
 		$GrassBattle.play()
 	
 		
-	
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		print(2)
+		if event.as_text_key_label() == "Escape" and event.is_pressed():
+			if !escape_menu:
+				$PauseMenuContainer/PauseMenu.show()
+				escape_menu = true
+				print('show')
+			else:
+				print('hide')
+				$PauseMenuContainer/PauseMenu.hide()
+				escape_menu = false
 
 func new_game():
 	$StartTimer2.start()
@@ -204,3 +217,11 @@ func _on_start_timer_2_timeout() -> void:
 	game_over = false
 	$StartTimer2.stop()
 	
+
+
+func _on_music_mute_button_pressed() -> void:
+	music_mute = !music_mute
+	if game_over:
+		$TitleMusic.stop()
+	else:
+		$GrassBattle.stop()

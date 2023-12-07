@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var path_follow : Node
-var health : int = 100
+var health : int = 10
 signal death
 signal point_scored
 signal hit

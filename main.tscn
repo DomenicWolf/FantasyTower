@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d16l1w8ee26ur"]
+[gd_scene load_steps=17 format=3 uid="uid://d16l1w8ee26ur"]
 
 [ext_resource type="PackedScene" uid="uid://dlv2dp0xkahj6" path="res://tile_map.tscn" id="1_2moy1"]
 [ext_resource type="Script" path="res://main.gd" id="1_dvwld"]
@@ -24,6 +24,22 @@ radius = 27.074
 radius = 125.0
 
 [sub_resource type="TileSet" id="TileSet_tvv5n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smglr"]
+bg_color = Color(0.301961, 0.188235, 0.188235, 1)
+border_width_bottom = 4
+border_color = Color(0.14902, 0.0823529, 0.0823529, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="Theme" id="Theme_acm2y"]
+Button/styles/normal = SubResource("StyleBoxFlat_smglr")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_dvwld")
@@ -54,6 +70,7 @@ shape = SubResource("CircleShape2D_riaiw")
 [node name="StartTimer" type="Timer" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource("5_dcfoj")]
+layer = 0
 
 [node name="MobCheckpoint" type="Area2D" parent="."]
 position = Vector2(956, 599)
@@ -86,6 +103,41 @@ stream = ExtResource("10_la0ot")
 tile_set = SubResource("TileSet_tvv5n")
 format = 2
 
+[node name="PauseMenuContainer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="PauseMenuContainer"]
+top_level = true
+visibility_layer = 5127
+z_as_relative = false
+layout_mode = 3
+anchor_left = -0.043
+anchor_top = 0.037
+anchor_right = -0.043
+anchor_bottom = 0.037
+offset_left = -136.96
+offset_top = 412.36
+offset_right = -96.96
+offset_bottom = 452.36
+theme = SubResource("Theme_acm2y")
+
+[node name="MusicMuteButton" type="Button" parent="PauseMenuContainer/PauseMenu"]
+top_level = true
+layout_mode = 0
+offset_left = 597.0
+offset_top = 277.0
+offset_right = 695.0
+offset_bottom = 309.0
+text = "Mute"
+
+[node name="Button" type="Button" parent="PauseMenuContainer/PauseMenu"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 30.0
+offset_right = 119.0
+offset_bottom = 57.0
+text = "asdasd
+"
+
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="GrassMobPath" method="_on_mob_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
@@ -96,3 +148,4 @@ format = 2
 [connection signal="timeout" from="GoblinMobTimer" to="." method="_on_goblin_mob_timer_timeout"]
 [connection signal="timeout" from="ImpMobTimer" to="." method="_on_imp_mob_timer_timeout"]
 [connection signal="timeout" from="StartTimer2" to="." method="_on_start_timer_2_timeout"]
+[connection signal="pressed" from="PauseMenuContainer/PauseMenu/MusicMuteButton" to="." method="_on_music_mute_button_pressed"]

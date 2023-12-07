@@ -84,12 +84,14 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		$CollisionShape2D/Polygon2D.show()
 		if(event.is_action("left_click")):
 			print("ytep[]")
-			$PopupMenu.position = self.position
-			$PopupMenu.show()
+			$UpgradePopup.global_position = Vector2(get_viewport_rect().size.x/2,get_viewport_rect().size.y/2)
+			$UpgradePopup.show()
 	else:
 		$CollisionShape2D/Polygon2D.hide()
 
 
 
-func _on_faster_shooting_upgrade_pressed() -> void:
-	$PopupMenu.hide()
+
+
+func _on_exit_button_pressed() -> void:
+	$UpgradePopup.hide()
