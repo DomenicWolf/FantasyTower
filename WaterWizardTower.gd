@@ -6,6 +6,7 @@ var mobs_in_range : Array = []
 var time : bool = false
 var water_tornado = preload("res://water_tornado.tscn")
 @export var is_placed : bool = false
+var mouse_hovered : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,11 +28,18 @@ func attack(target: Node):
 	
 	var tween = get_tree().create_tween()
 	var direction_to_target = (target.global_position - self.global_position).normalized()
+	
+	var distance = int(target.global_position.distance_to(self.global_position))
+	var speed_multi = 50
+	
+	if distance > 80:
+		speed_multi = 20
+
 
 	# Set the rotation of the arrow to face the direction
 	#new_water_tornado.rotation = direction_to_target.angle()
 	# interpolate the position of the fireball with the target
-	tween.tween_property(new_water_tornado,"position",(target.global_position - self.global_position) * 20,1)
+	tween.tween_property(new_water_tornado,"position",(target.global_position - (self.global_position + Vector2(0,0))) * speed_multi,1)
 	tween.tween_callback(new_water_tornado.queue_free)
 
 
@@ -72,13 +80,19 @@ func _on_area_exited(area):
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	#print(event.as_text())
-	print('test')
+
+	
 	if (position.distance_to(event.position) <= 50.0):
+
 		$CollisionShape2D/Polygon2D.show()
 		if(event.is_action("left_click")):
-			print("ytep[]")
-			$Popup.position = self.position
-			$Popup.show()
+			$UpgradePopupContainer/UpgradePopup.global_position = Vector2(get_viewport_rect().size.x * 2.8,get_viewport_rect().size.y * 2.7)
+			$UpgradePopupContainer/UpgradePopup.show()
+
 	else:
 		$CollisionShape2D/Polygon2D.hide()
+		mouse_hovered = false
+
+
+func _on_exit_button_pressed() -> void:
+	$UpgradePopupContainer/UpgradePopup.hide()

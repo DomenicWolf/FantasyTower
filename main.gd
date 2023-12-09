@@ -220,8 +220,23 @@ func _on_start_timer_2_timeout() -> void:
 
 
 func _on_music_mute_button_pressed() -> void:
+	pass
+	#music_mute = !music_mute
+	#if game_over:
+		#$TitleMusic.stop()
+	#else:
+		#$GrassBattle.stop()
+
+
+
+
+func _on_music_mute_button_toggled(toggled_on: bool) -> void:
 	music_mute = !music_mute
-	if game_over:
+	if music_mute:
+		$PauseMenuContainer/PauseMenu/MusicMuteButton.text = "Unmute"
+	else:
+		$PauseMenuContainer/PauseMenu/MusicMuteButton.text = "Mute"
+	if game_over and !$GrassBattle.playing:
 		$TitleMusic.stop()
 	else:
 		$GrassBattle.stop()

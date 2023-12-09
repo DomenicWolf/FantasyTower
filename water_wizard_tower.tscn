@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7w456qw1ex85"]
+[gd_scene load_steps=14 format=3 uid="uid://b7w456qw1ex85"]
 
 [ext_resource type="Script" path="res://WaterWizardTower.gd" id="1_xr3vr"]
 [ext_resource type="Texture2D" uid="uid://cgv57fv4t7xcx" path="res://Art/WaterWizard-export.png" id="2_70iky"]
+[ext_resource type="Texture2D" uid="uid://dvk6a3poyinwq" path="res://Art/WaterWizardStatic.png" id="3_r5wjf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u0luo"]
 radius = 555.203
@@ -43,8 +44,32 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ublib"]
 radius = 180.069
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45gcp"]
+bg_color = Color(0.301961, 0.411765, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j8d2"]
+bg_color = Color(0.301961, 0.188235, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anhqm"]
+bg_color = Color(0.301961, 0.188235, 0.188235, 1)
+border_width_bottom = 4
+border_color = Color(0.156863, 0.0901961, 0.0901961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="Theme" id="Theme_tshbg"]
+Button/styles/disabled = SubResource("StyleBoxFlat_45gcp")
+Button/styles/normal = SubResource("StyleBoxFlat_7j8d2")
+Label/styles/normal = SubResource("StyleBoxFlat_anhqm")
+
 [node name="WaterWizardTower" type="Area2D"]
-position = Vector2(158, 123)
+position = Vector2(435, 304)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_xr3vr")
 
@@ -64,14 +89,158 @@ sprite_frames = SubResource("SpriteFrames_hb83e")
 animation = &"attack"
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.291
+wait_time = 1.293
 autostart = true
 
 [node name="SelectRadius" type="CollisionShape2D" parent="."]
 position = Vector2(120, 65)
 shape = SubResource("CircleShape2D_ublib")
 
-[node name="Popup" type="Popup" parent="."]
+[node name="UpgradePopupContainer" type="CanvasLayer" parent="."]
+layer = 2
+scale = Vector2(0.2, 0.2)
+transform = Transform2D(0.2, 0, 0, 0.2, 0, 0)
+
+[node name="UpgradePopup" type="Control" parent="UpgradePopupContainer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 663.333
+offset_top = 423.333
+offset_right = 703.333
+offset_bottom = 463.333
+scale = Vector2(3, 3)
+theme = SubResource("Theme_tshbg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -400.0
+offset_top = -305.0
+offset_right = 688.0
+offset_bottom = -25.0
+scale = Vector2(0.6, 0.6)
+
+[node name="FasterShootingUpgrade" type="Button" parent="UpgradePopupContainer/UpgradePopup/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_r5wjf")
+
+[node name="FireArrowsUpgrade" type="Button" parent="UpgradePopupContainer/UpgradePopup/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "
+"
+icon = ExtResource("3_r5wjf")
+
+[node name="EternalHeatUpgrade" type="Button" parent="UpgradePopupContainer/UpgradePopup/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_r5wjf")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -396.667
+offset_top = -36.6667
+offset_right = 417.333
+offset_bottom = 243.333
+scale = Vector2(0.6, 0.6)
+
+[node name="LongerRangeUpgrade" type="Button" parent="UpgradePopupContainer/UpgradePopup/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_r5wjf")
+
+[node name="TripleArrowsUpgrade" type="Button" parent="UpgradePopupContainer/UpgradePopup/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_r5wjf")
+
+[node name="CosmicUpgrade" type="Button" parent="UpgradePopupContainer/UpgradePopup/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "
+"
+icon = ExtResource("3_r5wjf")
+
+[node name="FasterLabel" type="Label" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 2
+offset_left = -371.111
+offset_top = -104.444
+offset_right = -250.111
+offset_bottom = -51.4443
+text = "Faster Shooting
+200 S$"
+horizontal_alignment = 1
+
+[node name="CosmicLabel" type="Label" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -6.11102
+offset_top = 165.556
+offset_right = 183.889
+offset_bottom = 218.556
+text = "Archer of Cosmic Infinity
+ 70000 S$"
+horizontal_alignment = 1
+
+[node name="TripleLabel" type="Label" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -167.778
+offset_top = 165.556
+offset_right = -46.778
+offset_bottom = 218.556
+text = "Triple Arrows
+3000 S$"
+horizontal_alignment = 1
+
+[node name="LongerLabel" type="Label" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -364.444
+offset_top = 165.556
+offset_right = -243.444
+offset_bottom = 218.556
+text = "Longer Range
+300 S$
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeatLabel2" type="Label" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -6.11099
+offset_top = -104.444
+offset_right = 175.889
+offset_bottom = -51.4443
+text = "Archer of Eternal Flame
+50000 S$"
+horizontal_alignment = 1
+
+[node name="FireLabel" type="Label" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -176.111
+offset_top = -104.444
+offset_right = -55.111
+offset_bottom = -51.4443
+text = "Fire Arrows
+5000 S$
+"
+horizontal_alignment = 1
+
+[node name="ExitButton" type="Button" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = 187.222
+offset_top = -304.444
+offset_right = 227.222
+offset_bottom = -264.444
+mouse_default_cursor_shape = 2
+text = "X"
+
+[node name="Sell" type="Button" parent="UpgradePopupContainer/UpgradePopup"]
+layout_mode = 0
+offset_left = -474.0
+offset_top = -304.0
+offset_right = -404.0
+offset_bottom = -264.0
+text = "Sell"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
@@ -79,3 +248,4 @@ shape = SubResource("CircleShape2D_ublib")
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="pressed" from="UpgradePopupContainer/UpgradePopup/ExitButton" to="." method="_on_exit_button_pressed"]

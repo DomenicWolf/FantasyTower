@@ -113,7 +113,7 @@ offset_left = -51.0
 offset_top = 2.0
 offset_bottom = 25.0
 grow_horizontal = 0
-text = "370"
+text = "100000"
 
 [node name="LivesValue" type="Label" parent="."]
 offset_left = 20.0

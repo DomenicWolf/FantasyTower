@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d16l1w8ee26ur"]
+[gd_scene load_steps=21 format=3 uid="uid://d16l1w8ee26ur"]
 
 [ext_resource type="PackedScene" uid="uid://dlv2dp0xkahj6" path="res://tile_map.tscn" id="1_2moy1"]
 [ext_resource type="Script" path="res://main.gd" id="1_dvwld"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://brxbrris055gd" path="res://imp_mob.tscn" id="5_s6bo8"]
 [ext_resource type="AudioStream" uid="uid://fsrq42wfmcqc" path="res://music/Bloons.mp3" id="9_f52ho"]
 [ext_resource type="AudioStream" uid="uid://b3gb2xh28eej6" path="res://music/BloonsBattle.mp3" id="10_la0ot"]
+[ext_resource type="Texture2D" uid="uid://cao04tp6issl2" path="res://Art/PauseMenu.png" id="11_p7uhg"]
 
 [sub_resource type="Curve2D" id="Curve2D_g3m8r"]
 _data = {
@@ -25,6 +26,33 @@ radius = 125.0
 
 [sub_resource type="TileSet" id="TileSet_tvv5n"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxgg1"]
+bg_color = Color(0.301961, 0.188235, 0.188235, 1)
+border_width_bottom = 4
+border_color = Color(0.211765, 0.12549, 0.12549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tr48"]
+bg_color = Color(0.270588, 0.164706, 0.164706, 1)
+border_width_bottom = 4
+border_color = Color(0.2, 0.117647, 0.117647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smglr"]
 bg_color = Color(0.301961, 0.188235, 0.188235, 1)
 border_width_bottom = 4
@@ -38,8 +66,18 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vtpn"]
+bg_color = Color(0.219608, 0.133333, 0.133333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="Theme" id="Theme_acm2y"]
+Button/styles/focus = SubResource("StyleBoxFlat_uxgg1")
+Button/styles/hover = SubResource("StyleBoxFlat_0tr48")
 Button/styles/normal = SubResource("StyleBoxFlat_smglr")
+Button/styles/pressed = SubResource("StyleBoxFlat_7vtpn")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_dvwld")
@@ -106,6 +144,7 @@ format = 2
 [node name="PauseMenuContainer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" type="Control" parent="PauseMenuContainer"]
+visible = false
 top_level = true
 visibility_layer = 5127
 z_as_relative = false
@@ -123,10 +162,12 @@ theme = SubResource("Theme_acm2y")
 [node name="MusicMuteButton" type="Button" parent="PauseMenuContainer/PauseMenu"]
 top_level = true
 layout_mode = 0
-offset_left = 597.0
-offset_top = 277.0
-offset_right = 695.0
-offset_bottom = 309.0
+offset_left = 604.0
+offset_top = 243.0
+offset_right = 702.0
+offset_bottom = 275.0
+mouse_default_cursor_shape = 2
+toggle_mode = true
 text = "Mute"
 
 [node name="Button" type="Button" parent="PauseMenuContainer/PauseMenu"]
@@ -137,6 +178,11 @@ offset_right = 119.0
 offset_bottom = 57.0
 text = "asdasd
 "
+
+[node name="BackgroundPause" type="Sprite2D" parent="PauseMenuContainer/PauseMenu"]
+position = Vector2(845, -177)
+scale = Vector2(0.271094, 0.268359)
+texture = ExtResource("11_p7uhg")
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="GrassMobPath" method="_on_mob_timer_timeout"]
@@ -149,3 +195,4 @@ text = "asdasd
 [connection signal="timeout" from="ImpMobTimer" to="." method="_on_imp_mob_timer_timeout"]
 [connection signal="timeout" from="StartTimer2" to="." method="_on_start_timer_2_timeout"]
 [connection signal="pressed" from="PauseMenuContainer/PauseMenu/MusicMuteButton" to="." method="_on_music_mute_button_pressed"]
+[connection signal="toggled" from="PauseMenuContainer/PauseMenu/MusicMuteButton" to="." method="_on_music_mute_button_toggled"]
